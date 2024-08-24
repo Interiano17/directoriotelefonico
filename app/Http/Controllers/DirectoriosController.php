@@ -21,11 +21,12 @@ class DirectoriosController extends Controller
         return view('buscar');
     }
 
-    public function eliminarDirectorio(){
-        return view('eliminar');
+    public function eliminarDirectorio($codigo){
+        $directorioBuscado = Directorio::find($codigo);
+        return view('eliminar', compact('directorioBuscado'));
     }
 
-    public function guardarDirectorio(){
+    public function guardarDirectorio(Request $request){
         $nuevoDirectorio = new Directorio();
         $nuevoDirectorio->codigoEntrada = $request->codigo;
         $nuevoDirectorio->nombre = $request->nombre;
@@ -33,6 +34,18 @@ class DirectoriosController extends Controller
         $nuevoDirectorio->telefono = $request->telefono;
         $nuevoDirectorio->correo = $request->correo;
         $nuevoDirectorio->save();
+        return redirect('/directorios/mostrar');
+    }
+
+    public function destroy($codigo){
+        $directorioEliminar = Directorio::find($codigo);
+        $directorioEliminar->delete();
+
+        $contactosBuscados = Contacto::where('codigoEntrada', $codigo)->get();
+        foreach ($contactosBuscados as $contacto) {
+            $contacto->delete();
+        }
+
         return redirect('/directorios/mostrar');
     }
 }

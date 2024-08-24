@@ -9,4 +9,5 @@ class Directorio extends Model
 {
     use HasFactory;
     protected $primaryKey = 'codigoEntrada';
+    public $timestamps = false;
 }

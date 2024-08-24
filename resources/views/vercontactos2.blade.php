@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Buscar Entrada</title>
+        <title>Contactos</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -40,19 +39,44 @@
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                     <div class="grid grid-cols-1 md:grid-cols-2">
                         <div class="card">
-                            <h3 class="card-header" style="color: white;">Buscar Entrada</h3>
+                            <h3 class="card-header" style="color: white;">Lista de contactos</h3>
                             <div class="card-body">
                                 <p class="card-text">
-                                    <form action={{ route('contactos.ver.busqueda') }} method="POST" >
-                                        @csrf
-                                        <label for="" style="color: white;">Correo</label>
-                                        <input type="text" class="form-control" name ="correo">
-                                        <p>
-                                            <button class="btn btn-success">Buscar</button>
-                                            <a href={{ route('directorios.mostrar') }} class="btn btn-info">Regresar</a>
-                                        </p> 
-                                    </form>
-                                                                       
+                                    <label for="" style="color: white;" >Código</label>
+                                    <input type="text" class="form-control" value={{ $directorioEntrada[0]->codigoEntrada }} readonly>
+                                    <label for="" style="color: white;" >Nombre</label>
+                                    <input type="text" class="form-control" value={{ $directorioEntrada[0]->nombre }} readonly>
+                                    <label for="" style="color: white;" >Apellido</label>
+                                    <input type="text" class="form-control" value={{ $directorioEntrada[0]->apellido }} readonly>
+
+                                    <p>
+                                        <a class="btn btn-primary" href={{ route('contactos.agregar', $directorioEntrada[0]->codigoEntrada) }}>Agregar nuevo contacto</a>
+                                        <a href={{ route('directorios.mostrar') }} class="btn btn-info">Regresar</a>
+                                    </p>
+
+                                    <table class="table">
+                                        <thead>                                            
+                                            <th scope="col" name="nombre" style="color: white;">Id</th>
+                                            <th scope="col" name="nombre" style="color: white;">Nombre</th>
+                                            <th scope="col" name="tipoElectrodomestico" style="color: white;">Apellido</th>
+                                            <th scope="col" name="precio" style="color: white;">Teléfono</th>                                            
+                                            <th scope="col" style="color: white;">Eliminar</th>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($contactosBuscados as $contactoBuscado)
+                                                <tr>
+                                                    <td style="color: white;">{{ $contactoBuscado->id }}</td>                                                    
+                                                    <td style="color: white;">{{ $contactoBuscado->nombre }}</td>
+                                                    <td style="color: white;">{{ $contactoBuscado->apellido }}</td>
+                                                    <td style="color: white;">{{ $contactoBuscado->telefono }}</td>                                                    
+                                                    <td>
+                                                        <a href={{ route('contacto.borrar', [$contactoBuscado->id, $contactoBuscado->codigoEntrada]) }} class="btn btn-danger" style="color: white;">Eliminar</a>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                        </tbody>
+
+                                    
                                 </p>
                             </div>
                         </div>

@@ -12,12 +12,20 @@ Route::get('/directorios/mostrar', [DirectoriosController::class, 'mostrarDirect
 
 Route::get('/directorios/crear', [DirectoriosController::class, 'crearDirectorio'])->name('directorio.crear');
 
-Route::get('/directorios/guardar', [DirectoriosController::class, 'guardarDirectorio'])->name('directorio.guardar');
+Route::post('/directorios/guardar', [DirectoriosController::class, 'guardarDirectorio'])->name('directorio.guardar');
 
 Route::get('/directorios/buscar', [DirectoriosController::class, 'buscarDirectorio'])->name('directorio.buscar');
 
-Route::get('/directorios/contactos/ver', [ContactosController::class, 'verContactos'])->name('contactos.ver');
+Route::get('/directorios/contactos/ver/{codigo}', [ContactosController::class, 'verContactos'])->name('contactos.ver');
 
-Route::get('/directorios/contactos/eliminar', [DirectoriosController::class, 'eliminarDirectorio'])->name('directorio.eliminar');
+Route::post('/directorios/contactos/ver/buscar', [ContactosController::class, 'verContactosBusqueda'])->name('contactos.ver.busqueda');
 
-Route::post('/directorios/contactos/agregar', [ContactosController::class, 'agregarContacto'])->name('contactos.agregar');
+Route::get('/directorios/contactos/eliminar/{codigo}', [DirectoriosController::class, 'eliminarDirectorio'])->name('directorio.eliminar');
+
+Route::get('/directorios/contactos/agregar/{codigo}', [ContactosController::class, 'agregarContacto'])->name('contactos.agregar');
+
+Route::post('/directorios/contactos/agregar/guardar', [ContactosController::class, 'guardarContacto'])->name('contacto.agregar.guardar');
+
+Route::get('directorios/borrar/{codigo}', [DirectoriosController::class, 'destroy'])->name('directorio.destroy');
+
+Route::get('contactos/borrar/{id}/{codigo}', [ContactosController::class, 'destroyContact'])->name('contacto.borrar');

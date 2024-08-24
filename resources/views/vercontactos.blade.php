@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Contactos</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -43,15 +43,15 @@
                             <h3 class="card-header" style="color: white;">Lista de contactos</h3>
                             <div class="card-body">
                                 <p class="card-text">
-                                    <label for="" style="color: white;">C&oacute;digo</label>
-                                    <input type="text" class="form-control" readonly>
-                                    <label for="" style="color: white;">Nombre</label>
-                                    <input type="text" class="form-control" readonly>
-                                    <label for="" style="color: white;">Apellido</label>
-                                    <input type="text" class="form-control" readonly>
+                                    <label for="" style="color: white;" >Código</label>
+                                    <input type="text" class="form-control" value={{ $directorioEntrada->codigoEntrada }} readonly>
+                                    <label for="" style="color: white;" >Nombre</label>
+                                    <input type="text" class="form-control" value={{ $directorioEntrada->nombre }} readonly>
+                                    <label for="" style="color: white;" >Apellido</label>
+                                    <input type="text" class="form-control" value={{ $directorioEntrada->apellido }} readonly>
 
                                     <p>
-                                        <a class="btn btn-primary" href={{ route('contactos.agregar') }}>Agregar nuevo contacto</a>
+                                        <a class="btn btn-primary" href={{ route('contactos.agregar', $directorioEntrada->codigoEntrada) }}>Agregar nuevo contacto</a>
                                         <a href={{ route('directorios.mostrar') }} class="btn btn-info">Regresar</a>
                                     </p>
 
@@ -59,20 +59,20 @@
                                         <thead>                                            
                                             <th scope="col" name="nombre" style="color: white;">Id</th>
                                             <th scope="col" name="nombre" style="color: white;">Nombre</th>
-                                            <th scope="col" name="tipoElectrodomestico" style="color: white;">Apellido</th>
-                                            <th scope="col" name="precio" style="color: white;">Tel&eacute;fono</th>                                            
+                                            <th scope="col" name="tipoElectrodomestico" style="color: white;">Apellido</th>                                           
                                             <th scope="col" style="color: white;">Eliminar</th>
                                         </thead>
                                         <tbody>
+                                            @foreach ($contactosBuscados as $contactoBuscado)
                                                 <tr>
-                                                    <td style="color: white;">1</td>                                                    
-                                                    <td style="color: white;">Julio</td>
-                                                    <td style="color: white;">Cortez</td>
-                                                    <td style="color: white;">9999</td>                                                    
+                                                    <td style="color: white;">{{ $contactoBuscado->id }}</td>                                                    
+                                                    <td style="color: white;">{{ $contactoBuscado->nombre }}</td>
+                                                    <td style="color: white;">{{ $contactoBuscado->apellido }}</td>                                                    
                                                     <td>
-                                                        <a href="#" class="btn btn-danger" style="color: white;">Eliminar</a>
+                                                        <a href={{ route('contacto.borrar', [$contactoBuscado->id, $contactoBuscado->codigoEntrada]) }} class="btn btn-danger" style="color: white;">Eliminar</a>
                                                     </td>
                                                 </tr>
+                                                @endforeach
                                         </tbody>
 
                                     

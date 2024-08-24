@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Agregar Contacto</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -43,18 +43,21 @@
                             <h3 class="card-header" style="color: white;">Agregar Contacto</h3>
                             <div class="card-body">
                                 <p class="card-text">
-                                    <form>
-                                        <label for="" style="color: white;">C&oacute;digo de entrada</label>
-                                        <input type="text" name="codigo" class="form-control" readonly>
+                                    <form action={{ route('contacto.agregar.guardar') }} method="POST">
+                                        @csrf
+                                        <label for="" style="color: white;">Código de entrada</label>
+                                        <input type="text" name="codigo" class="form-control" value={{ $codigo }} readonly>
+                                        <label for="" style="color: white;">ID</label>
+                                        <input type="text" name="id" class="form-control">
                                         <label for="" style="color: white;">Nombre</label>
                                         <input type="text" name="nombre" class="form-control">
                                         <label for="" style="color: white;">Apellido</label>
                                         <input type="text" name="apellido" class="form-control">
-                                        <label for="" style="color: white;">Tel&eacute;fono</label>
-                                        <input type="text" name="telefono" class="form-control">
+                                        <label for="" style="color: white;">Correo</label>
+                                        <input type="text" name="correo" class="form-control">
                                         
                                         <button class="btn btn-primary">Guardar</button>
-                                        <a href={{ route('contactos.ver') }} class="btn btn-info">Regresar</a>
+                                        <a href={{ route('contactos.ver', $codigo) }} class="btn btn-info">Regresar</a>
                                         
                                     </form>
                                 </p>

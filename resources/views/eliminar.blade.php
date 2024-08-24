@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Eliminar entrada</title>
+    <title>Eliminar Entrada</title>
 </head>
 <body>
 
@@ -19,7 +19,7 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">C&oacute;digo</th>
+                <th scope="col">Código</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
                 <th scope="col">Correo</th>
@@ -28,11 +28,11 @@
             </thead>
             <tbody>                
                 <tr>
-                    <th scope="row">11</th>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>jdoe@gmail.com</td>
-                    <td>999</td>
+                    <th scope="row">{{ $directorioBuscado->codigoEntrada }}</th>
+                    <td>{{ $directorioBuscado->nombre }}</td>
+                    <td>{{ $directorioBuscado->apellido }}</td>
+                    <td>{{ $directorioBuscado->correo }}</td>
+                    <td>{{ $directorioBuscado->telefono }}</td>
                   </tr>
                 
               
@@ -44,7 +44,7 @@
         </div>
         <div class="modal-footer">
           <a href={{ route('directorios.mostrar') }} class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</a>          
-          <a href="#" class="btn btn-danger" data-bs-dismiss="modal">Confirmar</a>          
+          <a href={{ route('directorio.destroy', $directorioBuscado->codigoEntrada) }} class="btn btn-danger" data-bs-dismiss="modal">Confirmar</a>          
         </div>
       </div>
     </div>

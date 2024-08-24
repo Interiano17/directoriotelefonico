@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Crear Entrada</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -43,18 +43,18 @@
                             <h3 class="card-header" style="color: white;">Crear Nueva Entrada Directorio</h3>
                             <div class="card-body">
                                 <p class="card-text">
-                                    <form action="{{route('alumno.guardar')}}" method="POST">
+                                    <form action="{{route('directorio.guardar')}}" method="POST">
                                         @csrf
-                                        <label for="" style="color: white;">C&oacute;digo</label>
-                                        <input type="text" name="codigo" class="form-control">
+                                        <label for="" style="color: white;">Código</label>
+                                        <input type="text" name="codigo" class="form-control" required>
                                         <label for="" style="color: white;">Nombre</label>
-                                        <input type="text" name="nombre" class="form-control">
+                                        <input type="text" name="nombre" class="form-control" required>
                                         <label for="" style="color: white;">Apellido</label>
-                                        <input type="text" name="apellido" class="form-control">
+                                        <input type="text" name="apellido" class="form-control" required>
                                         <label for="" style="color: white;">Tel&eacute;fono</label>
-                                        <input type="text" name="telefono" class="form-control">
+                                        <input type="text" name="telefono" class="form-control" required>
                                         <label for="" style="color: white;">Correo</label>
-                                        <input type="text" name="correo" class="form-control">
+                                        <input type="text" name="correo" class="form-control" required>
                                         
                                         
                                         <button class="btn btn-primary">Guardar</button>
